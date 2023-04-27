@@ -1,0 +1,5 @@
+Select ITEM, YR, SUM(Sales) as Sales from 
+	(select ITEM,YR,SUM(STOTSALES) as Sales from CANXXX.dbo.OESHHD where YR = 2018 and CUSTOMER not like '%XXX%' group by ITEM, YR UNION 
+	 select ITEM,YR,SUM(STOTSALES) as Sales from USAXXX.dbo.OESHHD where YR = 2018 and CUSTOMER not like '%XXX%' group by ITEM, YR UNION
+	 select ITEM,YR,SUM(STOTSALES * .71) as Sales from AUSXXX.dbo.OESHHD where YR = 2018 and CUSTOMER not like '%XXX%' group by ITEM, YR
+	 )zoo where Sales > 25000 group by ITEM, YR
